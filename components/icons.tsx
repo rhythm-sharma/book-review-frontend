@@ -7,6 +7,7 @@ import {
   LucideProps,
 } from "lucide-react";
 
+// @ts-ignore:next-line
 export type Icon = LucideIcon;
 
 export const Icons = {
