@@ -1,6 +1,5 @@
 "use client";
 
-import { User } from "next-auth";
 import { signOut } from "next-auth/react";
 
 import {
@@ -13,6 +12,7 @@ import {
 import { UserAvatar } from "@/components/user-avatar";
 
 export function UserAccountNav() {
+  // @ts-ignore:next-line
   const user = JSON.parse(localStorage.getItem("user"));
 
   return (

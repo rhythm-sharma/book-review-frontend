@@ -52,6 +52,7 @@ export default function SubmitReview({ bookId }: any) {
   });
 
   async function onSubmit(data: ProfileFormValues) {
+    // @ts-ignore:next-line
     const user = JSON.parse(localStorage.getItem("user"));
 
     await dispatch(

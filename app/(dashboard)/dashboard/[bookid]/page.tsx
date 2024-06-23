@@ -35,6 +35,7 @@ export default function BookDetail({ params }: BookDetailProps) {
   }, [dispatch, token, params.bookid]);
 
   const isReviewSubmitted = useMemo(() => {
+    // @ts-ignore:next-line
     const user = JSON.parse(localStorage.getItem("user"));
     return reviews.some((item) => item.user.email === user.email);
   }, [reviews]);
