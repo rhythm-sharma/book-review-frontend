@@ -12,10 +12,16 @@ interface BookDetailProps {
   params: { bookid: string };
 }
 
+interface BookInterface {
+  book: any;
+  isGetBookByIdLoading: boolean;
+  reviews: any;
+}
+
 export default function BookDetail({ params }: BookDetailProps) {
   const dispatch = useAppDispatch();
   const token = useAppSelector((state) => state.auth.token);
-  const { book, isGetBookByIdLoading, reviews } = useAppSelector(
+  const { book, isGetBookByIdLoading, reviews }: BookInterface = useAppSelector(
     (state) => state.book
   );
 
@@ -44,7 +50,9 @@ export default function BookDetail({ params }: BookDetailProps) {
     if (reviews.length > 0) {
       return (
         reviews
+          // @ts-ignore:next-line
           .map(({ rating }) => rating)
+          // @ts-ignore:next-line
           .reduce((sum, currentValue) => sum + currentValue, 0) /
         reviews?.length
       );
@@ -98,6 +106,7 @@ export default function BookDetail({ params }: BookDetailProps) {
                 <div className="flex flex-col gap-2">
                   <span className="font-bold">{review?.user?.name}</span>
                   <div className="flex items-center gap-0.5">
+                    {/* @ts-ignore:next-line */}
                     {[...Array(review.rating).keys()].map((i) => (
                       <Icons.star key={i} className="w-5 h-5 fill-yellow-500" />
                     ))}

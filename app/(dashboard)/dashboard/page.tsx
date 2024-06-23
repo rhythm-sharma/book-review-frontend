@@ -146,33 +146,36 @@ export default function Home() {
             <div className="mt-5">
               <div className="grid gap-8">
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {books?.rows?.length > 0 &&
-                    books?.rows?.map((book) => {
-                      return (
-                        <Card key={book.bookId} className="p-4">
-                          <div className="flex-1 grid gap-2">
-                            <div className="flex items-center justify-between">
-                              <h3 className="font-bold text-lg line-clamp-1 hover:underline">
-                                <Link href={`/dashboard/${book.bookId}`}>
-                                  {book.title}
-                                </Link>
-                              </h3>
+                  {/* @ts-ignore:next-line */}
+                  {books?.rows?.length > 0
+                    ? // @ts-ignore:next-line
+                      books?.rows?.map((book) => {
+                        return (
+                          <Card key={book.bookId} className="p-4">
+                            <div className="flex-1 grid gap-2">
+                              <div className="flex items-center justify-between">
+                                <h3 className="font-bold text-lg line-clamp-1 hover:underline">
+                                  <Link href={`/dashboard/${book.bookId}`}>
+                                    {book.title}
+                                  </Link>
+                                </h3>
+                              </div>
+                              <p className="text-muted-foreground line-clamp-2">
+                                {book.author}
+                              </p>
+                              <p className="text-sm line-clamp-3">
+                                {book.description}
+                              </p>
                             </div>
-                            <p className="text-muted-foreground line-clamp-2">
-                              {book.author}
-                            </p>
-                            <p className="text-sm line-clamp-3">
-                              {book.description}
-                            </p>
-                          </div>
-                          {book?.genre && (
-                            <Badge className="mt-4" variant="outline">
-                              {book.genre}
-                            </Badge>
-                          )}
-                        </Card>
-                      );
-                    })}
+                            {book?.genre && (
+                              <Badge className="mt-4" variant="outline">
+                                {book.genre}
+                              </Badge>
+                            )}
+                          </Card>
+                        );
+                      })
+                    : null}
                 </div>
               </div>
             </div>
@@ -180,6 +183,7 @@ export default function Home() {
               <PaginationSection
                 currentPage={page}
                 onPageChange={onPageChange}
+                // @ts-ignore:next-line
                 totalPages={books?.totalPages}
               />
             </div>
