@@ -1,3 +1,3 @@
-const PROD_URL = "http://localhost:8080/";
+const PROD_URL = "https://book-review-backend-r0vg.onrender.com/";
 
 export { PROD_URL };
