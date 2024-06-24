@@ -3,10 +3,12 @@ import type { RootState } from "../store";
 
 export interface CounterState {
   token: string;
+  user: any;
 }
 
 const initialState: CounterState = {
   token: "",
+  user: null,
 };
 
 export const counterSlice = createSlice({
@@ -16,9 +18,12 @@ export const counterSlice = createSlice({
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
   },
 });
 
-export const { setToken } = counterSlice.actions;
+export const { setToken, setUser } = counterSlice.actions;
 
 export default counterSlice.reducer;

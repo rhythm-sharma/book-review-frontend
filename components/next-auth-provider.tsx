@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppDispatch } from "@/hooks/store";
-import { setToken } from "@/lib/slices/authSlice";
+import { setToken, setUser } from "@/lib/slices/authSlice";
 import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
 
@@ -18,8 +18,12 @@ export const NextAuthProvider = ({ children, user, token }: Props) => {
   useEffect(() => {
     if (user?.email) {
       localStorage.setItem("user", JSON.stringify(user));
+      dispatch(setUser(user));
+    } else {
+      // @ts-ignore:next-line
+      dispatch(setUser(JSON.parse(localStorage.getItem("user"))));
     }
-  }, [user]);
+  }, [dispatch, user]);
 
   return <SessionProvider>{children}</SessionProvider>;
 };

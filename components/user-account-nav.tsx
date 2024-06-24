@@ -10,10 +10,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { UserAvatar } from "@/components/user-avatar";
+import { useAppSelector } from "@/hooks/store";
 
 export function UserAccountNav() {
-  // @ts-ignore:next-line
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = useAppSelector((state) => state.auth.user);
 
   return (
     <DropdownMenu>
